@@ -1,0 +1,83 @@
+从0搭建一个粗糙的vue项目脚手架的思路，后面有时间的话会写一篇完整的搭建vue项目脚手架的文章。
+学习心得:
+	建议学习webpack4.0的搭建脚手架的同学，直接从webpack的官方网站上学习，一定要跟着教程一步一步的搭建。遇到不会的问题直接百度，或到sgementfault、博客园、CSDN等博客网站上搜索问题的答案，你遇到的问题基本上都能得到解决。
+	为什么不建议看视频教程。因为网上的视频教程太老了，基本上都是4.0之前的，况且webpack的官方文档已经很详细了。
+	webpack官网传送门:https://www.webpackjs.com/guides/
+
+1、es6模块化
+	- 一个js文件就是一个模块
+	- 如何导出模块 (export)
+	- 如何使用模块 (import)
+
+2、使用webpack
+	- 先下载webpack
+		npm install webpack -g(安装webpack最好不要安装全局的，否则可能导致版本冲突)
+		npm install webpack --save-dev
+
+	- 如何正确的执行webpack
+		在package.json中配置一个脚本，这个脚本用的命令是webpack.会去当前的node_modules下找bin对应的webpack名字让其执行。执行的就是bin/webpack.js,webpack.js需要当前目录下有个名字叫webpack.config.js的文件.这是一个配置文件，这个配置文件其实也是一个简单的JavaScript模块，我们可以把所有的与打包相关的信息放在里面。
+
+3、使用babel转换es6语法
+	- 安装babel
+		npm install babel-core --save-dev
+		npm install babel-loader --save-dev	//loader基于core，作用是用来解析语法
+	- 安装完babel后，babel还不能转译es6语法，因为loader的作用是用来解析语法，在这之前我们得先让他具备解析某种语法的功能
+		npm install babel-preset-es2015 --save-dev
+			让babel具备解析es6语法的功能
+	- 下载完后还不行，必须要告诉babel你具备转译es6的能力了
+		创建一个.babelrc文件,该文件下放babel具备的能力
+
+4、使用babel转换es7语法
+	babel-preset-stage-[0,1,2,3,..]
+		npm install babel-preset-stage-0 --save-dev
+
+5、解析样式
+	- 利用loader把样式转译成样式模块后，还需要将样式模块应用到html页面中(传统的方法是link标签和style标签)，因此这里也需要下载style-loader
+		npm install css-loader style-loader --save-dev
+
+6、解析预处理语言(less,sass,stylus)
+	安装相应的loader转译器
+		npm install less-loader --save-dev
+		npm install sass-loader --save-dev
+		npm install stylus-loader --save-dev
+
+7、解析图片(解析图片需要解析域名和文件)
+	file-loader 和 url-loader(file-loader依赖于url-loader)
+		npm install file-loader url-loader --save-dev
+
+	webpack.congif.js的module配置为：
+		{
+			test:/\.(jpg|png|gif)$/,
+			use:"url-loader?limit=8192",
+			//只在8192字节一下把图片转换成base64，其他情况下输出图片
+		}
+
+8、在js中引入图片需要import或写一个线上路径，如:
+		let img = new Image();
+		img,src='./2.jpg';//写了一个字符串，webpack不会对其打包,因此不会显示在页面上，并且会报错
+		document.body.appendChild(img);
+	正确写法
+		import page from './2.jpg';	//page就是打包后图片路径
+		let img = new Image();
+		img,src=page;//写了一个字符串，webpack不会对其打包,因此不会显示在页面上，并且会报错
+		document.body.appendChild(img);
+
+9、自动解析html插件
+	插件的作用是：以我们自己的html为模板打包后的结果，自动引入到html中产出到dist目录下
+		npm install html-webpack-plugin --save-dev
+	需要在webpack.config.js上引入插件
+		let HtmlWebpackPlugin = require('html-webpack-plugin')
+
+10、webpack-dev-server
+	这里面内置了服务，可以帮我们启动一个端口号，当代码更新时，可以自动打包(内存中打包)，代码有更新就重新执行
+		npm install webpack-dev-servr --save-dev
+
+11、安装vue-loader 和 安装vue-template-compiler
+	npm install vue-loader vue-template-compiler
+	vue-loader解析.vue文件
+	vue-template-compiler解析vue模板
+
+
+
+
+
