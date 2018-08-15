@@ -1,15 +1,15 @@
 <template>
-    <div>
-        <mheader :back="false">首页</mheader>
+    <div class='header'>
+        <mheader :back="false" >首页</mheader>
         <load v-if="loading">疯狂加载中</load>
         <template v-else>
           <swiper :swiperSlides="sliders"></swiper>
           <div class="container">
             <h3>热门图书</h3>
-            <ul>
-              <li v-for="(book,index) in hotbook" :key="index">
-                <img :src="book.bookCover">
-                <b>{{book.bookName}}</b>
+            <ul class="book-list">
+              <li class="book-item" v-for="(book,index) in hotbook" :key="index">
+                <img class="item-img" :src="book.bookCover">
+                <b class="item-name">{{book.bookName}}</b>
               </li>
             </ul>
           </div>
@@ -60,27 +60,41 @@ export default {
   }
 }
 </script>
-<style scoped>
-  h3 {
-    color:#999;
-    padding:5px 0;
+<style scoped lang="less">
+  .header {
+    margin-top: 1rem;
   }
   .container {
-    width:90%;
-    margin:0 auto;
-    margin-bottom:50px;
+    margin:0 0.072rem;
+    margin-bottom: 1rem;
+    h3 {
+      color:#999;
+      padding:0.1rem 0;
+      font-size: 0.5rem;
+    }
+    .book-list {
+      display:flex;
+      flex-wrap:wrap;
+      padding-bottom:1rem;
+      .book-item {
+        width:50%;
+        height: 4.3rem;
+        margin:0.4rem 0;
+        text-align:center;
+        .item-img{
+          width:3.5rem;
+          height: 3.8rem;
+        }
+        .item-name {
+          height: 0.4rem;
+          line-height: 0.4rem;
+          font-size: 0.4rem;
+          display: block;
+        }
+      }
+      
+    }
   }
-  ul {
-    display:flex;
-    flex-wrap:wrap;
-    padding-bottom:10px;
-  }
-  ul li {
-    width:50%;
-    margin:5px 0;
-    text-align:center;
-  }
-  img {
-    width:100%;
-  }
+  
+  
 </style>

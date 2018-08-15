@@ -1,14 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>vue-book</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://at.alicdn.com/t/font_643605_rxwqnjz8ex9zr529.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_643605_rxwqnjz8ex9zr529.css">
+    <style>
+      
+    </style>
   </head>
   <body>
-    <div id="app"></div>
-
-    <script src="/dist/build.js"></script>
+    <div class="container">
+        <div id="app">
+    </div>
+    
+    </div>
+    <!-- built files will be auto injected -->
   </body>
+  <script>
+    (function () {
+     
+      var desW = 460,
+        winW =parseInt(window.getComputedStyle(document.documentElement).width),
+        
+        ratio = winW / desW;
+      
+      if (winW > desW) {
+        var d = document.getElementsByClassName('container')[0];
+        d.style.width = desW + 'px';
+        d.style.margin = '0 auto';
+        document.documentElement.style.fontSize = 50 + 'px';
+        return ;
+      }
+      document.documentElement.style.fontSize = ratio * 50 + "px";
+    })();
+    
+    
+  </script>
 </html>

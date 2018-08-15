@@ -8,7 +8,7 @@ export let getSliders = ()=>{
 
 //获取热门图书接口
 export let getHotBook = () =>{
-  return axios.get('/hotbook');
+  return axios.get('./hotbook');
 };
 
 //获取全部图书

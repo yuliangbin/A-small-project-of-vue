@@ -1,5 +1,5 @@
 <template>
-  <header >
+  <header>
       <slot></slot>
       <i v-if="back" class='iconfont icon-fanhui1' @click="goBack"></i>
   </header>
@@ -20,16 +20,22 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
     header {
+        position: fixed;
+        top: 0;
+        z-index: 10;
         background:#afd9ee;
-        height:40px;
+        font-size: 0.5rem;
+        width: 9.2rem;
+        height:1rem;
         text-align:center;
-        line-height:40px;
+        line-height:1rem;
         font-weight:bold;
+         i {
+            position:absolute;
+            left:0.1rem;
+          }
     }
-  i {
-    position:absolute;
-    left:5px;
-  }
+ 
 </style>

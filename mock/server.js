@@ -22,15 +22,14 @@ function write(data,cb){
 
 
 http.createServer((req,res)=>{
-	//设置允许跨域的客户端请求地址 
     res.setHeader("Access-Control-Allow-Origin", "*");
-	//
     res.setHeader("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
     res.setHeader("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.setHeader("X-Powered-By",' 3.2.1');
     if(req.method=="OPTIONS"){
       return res.end('200');/*让options请求快速返回*/
     }
+
     let {pathname,query} = url.parse(req.url,true);//把query转化成对象
     
     if (pathname ==='/page'){
@@ -45,6 +44,7 @@ http.createServer((req,res)=>{
         res.end(JSON.stringify({hasMore:hasMore,book:book}));
         return ;
       })
+      return ;
     }
     if(pathname === '/sliders'){
       res.end(JSON.stringify(sliders));
@@ -61,6 +61,7 @@ http.createServer((req,res)=>{
         },1000);
 
       })
+      return ;
     }
   if (pathname === '/booklist'){
     let id = parseInt(query.id);
@@ -131,7 +132,72 @@ http.createServer((req,res)=>{
         break;
 
     }
+    return ;
   }
+
+  //读取一个路由
+  // fs.stat('.' + pathname, function(err,stats) {
+    // if(err){
+      // res.statusCode = 404;
+      // res.end("NOT FOUND");
+    // }else {
+      // if (stats.isDirectory()) {
+        // let p = require('path').join('.' + pathname,'./index.html');
+        // fs.createReadStream(p).pipe(res);
+      // }else {
+        // fs.createReadStream('.' + pathname).pipe(res);
+      // }
+    // }
+  // })
+    var reg = /\.(HTML|JS|CSS|JSON|TXT|ICO|JPG)/i;
+	if (reg.test(pathname)) {
+		//获取请求文件的后缀名
+		var suffix = reg.exec(pathname)[1].toUpperCase();
+		//根据请求文件的后缀名获取到当前文件的MIME类型
+		var suffixMIME = "text/plain";
+		switch(suffix) {
+			case "HTML":
+				suffixMIME = "text/html";
+				break;
+			case "CSS":
+				suffixMIME = "text/css";
+				break;
+			case "JS":
+				suffixMIME = "text/javascript";
+				break;
+			case "JSON":
+				suffixMIME = "application/json";
+				break;
+			case "ICO":
+				suffixMIME = "application/octet-stream";
+				break;
+			case "JPG":
+				suffixMIME = "image/jpg";
+				break;
+			
+		}
+	}
+	try {
+		if (pathname == '/') {
+			var conFile = fs.readFileSync("." + '/index.html' ,"utf8");
+			res.writeHead(200,{"content-type":'text/html' + ';charset=utf-8;'});
+			res.end(conFile);
+		} else {
+			//按照指定目录读取文件中的内容或者代码(读取出来的内容都是字符串格式的)
+			var conFile = fs.readFileSync("." + pathname ,"utf8");
+			//console.log(pathname);
+			//重写响应头信息：告诉客户的浏览器我返回的内容是什么样的MIME类型，并且指定返回的内容格式是utf-8编码的，返回的中文汉字就不会出现乱码
+			res.writeHead(200,{"content-type":suffixMIME + ';charset=utf-8;'});
+			res.end(conFile);
+		}
+	}
+	catch (e) {
+		res.writeHead(404,{"content-type":"text/plain;charset=utf-8;"});
+		res.end("request file is not found!")
+	}
+  
+  
+  
 }).listen(3000,function(){
   console.log('server is success,listening on 3000 port!')
 });

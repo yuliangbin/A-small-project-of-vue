@@ -2,7 +2,7 @@
 	README文件安排
 		- 项目概览
 		- 项目目录结构
-		- 查看项目效果
+		- 如何查看项目
 		- 项目主要.vue书写思路介绍
 		- VUE 项目总结
 
@@ -24,9 +24,16 @@
 		- main.js
 		
 # 查看项目效果
-	- 在node环境下运行mock/server.js文件，打开一个HTTP服务器
-	- 在项目根目录下打开命令行窗口
-		npm run dev
+	方法1: 本地查看
+		- npm install (下载项目依赖的包)
+		- 在node环境下运行mock/server.js文件，打开一个HTTP服务器
+		- 在项目根目录下打开命令行窗口
+			npm run dev
+	方法2: 打包上线查看
+		- npm install (下载项目依赖的包)
+		- npm run build
+		- 将生成的dist文件夹下的文件拷贝到mock文件夹下
+		- 在node环境下运行mock/server.js，打开一个HTTP服务器
 		
 # 项目主要.vue书写思路介绍
 	

@@ -1,7 +1,7 @@
 <template>
   <swiper :options="swiperOption">
-    <swiper-slide v-for="(slide,index) in swiperSlides" :key='index'>
-      <img :src="slide">
+    <swiper-slide class="swiper-item" v-for="(slide,index) in swiperSlides" :key='index'>
+      <img class="item-img" :src="slide">
     </swiper-slide>
     <div class="swiper-pagination" slot="pagination"></div>
   </swiper>
@@ -30,9 +30,13 @@
     //}
   }
 </script>
-<style scoped>
-  img {
-    width:100%;
-    height:150px;
+<style scoped lang="less">
+  .swiper-item {
+    width: 7.2rem;
+    height: 3rem;
+    .item-img {
+      width: 100%; 
+      height: 100%;
+    }
   }
 </style>

@@ -57,42 +57,52 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style scoped lang='less'>
   .detail {
     position:absolute;
     top:0;
-    bottom:0;
+    bottom:-1rem;
+    margin-top: 1rem;
     background:#fff;
     right:0;
     left:0;
     z-index:100;
   }
   ul {
-    width:200px;
-    margin:30px 0 20px 20px;
+    width:6rem;
+    margin:0.6rem 0 0.2rem 0.8rem;
+    li {
+      label {
+        font-size: 0.5rem;
+      }
+      input {
+        display: block;
+        height: 0.6rem;
+        width: 4rem;
+        font-size: 0.4rem;
+        border: 1px solid #ccc;
+        margin:0.2rem 0;
+      }
+      textarea {
+        display: block;
+        height:2rem;
+        width:4rem;
+        border: 1px solid #ccc;
+        font-size: 0.4rem;
+        margin:0.2rem 0;
+      }
+      button {
+        display:block;
+        width:2rem;
+        height:0.7rem;
+        font-size: 0.4rem;
+        background:#2aadd2;
+        color:white;
+        border:none;
+        border-radius:0.04rem;
+        outline:none;
+      }
+    }
   }
-  ul li label{
-    display:block;
-    font-size:25px;
-  }
-  ul li input {
-    height:25px;
-    width:200px;
-    margin:10px 0;
-  }
-  ul li textarea {
-    height:100px;
-    width:200px;
-    margin:10px 0;
-  }
-   button {
-    display:block;
-    width:60px;
-    height:35px;
-    background:#2aadd2;
-    color:white;
-    border:none;
-    border-radius:2px;
-    outline:none;
-  }
+   
 </style>
