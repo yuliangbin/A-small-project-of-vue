@@ -8,8 +8,17 @@
 
 # 项目概览
 	做了一个简易的图书管理系统。实现了图书获取、详情页跳转、添加图书、修改图书、删除图书等图书管理功能。
+![image](https://github.com/yuliangbin/A-small-project-of-vue/blob/master/images/%E5%88%87%E6%8D%A2.gif)
+![image](https://github.com/yuliangbin/A-small-project-of-vue/blob/master/images/%E9%A6%96%E9%A1%B5.gif)
+![image](https://github.com/yuliangbin/A-small-project-of-vue/blob/master/images/%E5%88%97%E8%A1%A8%E9%A1%B5.gif)
 
 # 项目目录结构
+
+## 项目结构
+
+![image](https://github.com/yuliangbin/A-small-project-of-vue/blob/master/images/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84.png)
+
+## 项目目录
 
 	- mock 	模拟后台数据
 		- book.json		json文件存放书籍数据
@@ -21,7 +30,8 @@
 		- components			页面组件，用于存放页面级组件
 		- router/router.js		前端路由
 		- APP.vue
-		- main.js
+		- main.
+    
 		
 # 查看项目效果
 	方法1: 本地查看
@@ -168,9 +178,8 @@
 		我们知道一些JS新版本的特性浏览器并不能很好的支持，所以我们就需要一种能够将这些新特性转换成当前浏览器能够支持的特性。
 		然而webpack本身并不支持语言的向下兼容，所以babel的作用就是将浏览器不能识别的特性转换成浏览器能识别的特性，即向下兼容。
 		
-		自己有写过一个从0搭建一个粗糙的vue项目脚手架的思路。
-		[文件链接](https://www.cnblogs.com/yuliangbin/p/9302721.html)
-		后面有时间的话会写一篇完整的搭建vue脚手架的文章。
+	自己有写过一个从0搭建一个粗糙的vue项目脚手架的思路：
+	[文章链接点击这里](https://github.com/yuliangbin/A-small-project-of-vue/blob/master/webpack%E8%84%9A%E6%89%8B%E6%9E%B6%E6%80%9D%E8%B7%AF.txt)。后面有时间的话会写一篇完整的搭建vue脚手架的文章。
 		
 		
 		
