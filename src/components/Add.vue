@@ -16,7 +16,7 @@
             <input type="text" v-model.number="book.bookPrice" id="bookPrice">
           </li>
           <li>
-            <label for="bookCover">书的封面地址</label>
+            <label for="bookCover">书的封面</label>
             <input type="text" v-model="book.bookCover" id="bookCover">
           </li>
           <li><button @click="add">确定添加</button></li>
@@ -35,11 +35,8 @@ export default {
   },
   methods:{
     async add(){
-      if (!this.book.bookInfo && !this.bookName && !this.bookPrice && this.bookCover) {
-        await addBook(this.book);
-        this.$router.push('/list');
-        console.log(2);
-      }
+      await addBook(this.book);
+      this.$router.push('/list');
     }
   },
   components:{

@@ -136,19 +136,6 @@ http.createServer((req,res)=>{
   }
 
   //读取一个路由
-  // fs.stat('.' + pathname, function(err,stats) {
-    // if(err){
-      // res.statusCode = 404;
-      // res.end("NOT FOUND");
-    // }else {
-      // if (stats.isDirectory()) {
-        // let p = require('path').join('.' + pathname,'./index.html');
-        // fs.createReadStream(p).pipe(res);
-      // }else {
-        // fs.createReadStream('.' + pathname).pipe(res);
-      // }
-    // }
-  // })
     var reg = /\.(HTML|JS|CSS|JSON|TXT|ICO|JPG)/i;
 	if (reg.test(pathname)) {
 		//获取请求文件的后缀名
@@ -195,7 +182,6 @@ http.createServer((req,res)=>{
 		res.writeHead(404,{"content-type":"text/plain;charset=utf-8;"});
 		res.end("request file is not found!")
 	}
-  
   
   
 }).listen(3000,function(){
